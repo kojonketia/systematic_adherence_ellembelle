@@ -29,7 +29,7 @@ The analyses include:
 ### 2. Simulation Analyses (`simulations/`)
 This directory contains R scripts for simulation analyses related to MDA adherence. The simulation component is intended to simulate the district's antigen prevalence using the observed adherence behaviors and how different patterns of individual treatment participation may influence MDA programme outcomes. The scripts provide the computational framework for exploring alternative adherence scenarios and their potential implications for LF elimination.
 
-## Repository Structure
+### Repository Structure
 The repository is organised as follows:
 ```text
 systematic_adherence_ellembelle/
@@ -44,7 +44,7 @@ systematic_adherence_ellembelle/
 └── README.md
 ```
 
-## Software Requirements
+### Software Requirements
 The analyses were developed using R. The following R packages may be required, depending on the specific script being executed:
 - `tidyverse`
 - `dplyr`
@@ -63,7 +63,7 @@ install.packages(c("tidyverse", "dplyr", "ggplot2", "readxl", "gtsummary", "Hmis
 
 ## Reproducing the Analyses
 
-### Step 1: Clone the repository
+#### Step 1: Clone the repository
 Clone the repository to your local computer:
 
 ```bash
@@ -75,18 +75,18 @@ Navigate to the project directory:
 cd systematic_adherence_ellembelle
 ```
 
-### Step 2: Prepare the data
+#### Step 2: Prepare the data
 Ensure that the anonymised MDA register data required by the analysis scripts are available in the appropriate directory. Where necessary, update the file paths in the R scripts to reflect the location of the data on your computer.
 
 **Note:** Individual-level study data should only be accessed and used in accordance with the applicable ethical approvals and data-sharing requirements.
 
-### Step 3: Run the statistical analyses
+#### Step 3: Run the statistical analyses
 Open the relevant R scripts in the `analysis/` directory using RStudio. Execute the scripts in the required order, beginning with data preparation, followed by statistical analysis and the generation of tables and figures.
 
-### Step 4: Run the simulation analyses
+#### Step 4: Run the simulation analyses
 Open the scripts in the `simulations/` directory and execute them according to their specified dependencies and simulation settings. Simulation parameters can be modified to investigate alternative MDA adherence scenarios.
 
-### Step 5: Generate study outputs
+#### Step 5: Generate study outputs
 The scripts generate the statistical summaries, tables, figures, and simulation results used to report the study findings. The output locations and file formats are specified within the individual scripts.
 
 ## Data Availability
