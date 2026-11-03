@@ -1,0 +1,59 @@
+
+#!/bin/bash
+
+#PBS -N ABC_PMC
+#PBS -q workq
+#PBS -l select=1:ncpus=8:mem=16gb
+#PBS -l walltime=48:00:00
+#PBS -j oe
+#PBS -o /home/knketia/hpc/logs/ABC_PMC.log
+#PBS -S /bin/bash
+
+set -Eeuo pipefail
+
+# Project directory
+cd /home/knketia/hpc
+
+# Load software
+module load R/4.3.2
+module load compilers/gcc/13.2
+
+# R library
+export R_LIBS_USER=/home/knketia/R/library
+
+# Prevent oversubscription
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+
+# Set number of workers
+export N_WORKERS=7
+
+echo "======================================"
+echo "ABC-PMC ANALYSIS"
+echo "Job ID: ${PBS_JOBID:-unknown}"
+echo "Started: $(date)"
+echo "Working directory: $(pwd)"
+echo "Allocated CPUs: 8"
+echo "Parallel workers: ${N_WORKERS}"
+echo "======================================"
+
+# Check R and Rcpp
+Rscript --vanilla -e '
+library(Rcpp)
+library(parallel)
+
+cat("R version:", R.version.string, "\n")
+cat("Rcpp version:", as.character(packageVersion("Rcpp")), "\n")
+'
+
+# Run ABC-PMC
+echo "Starting 01_abc.R"
+
+Rscript --vanilla code/01_abc.R
+
+echo "======================================"
+echo "ABC-PMC ANALYSIS COMPLETED SUCCESSFULLY"
+echo "Finished: $(date)"
+echo "======================================"
+
